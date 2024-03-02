@@ -1,9 +1,18 @@
-from flask import flask, render_template, url_for
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
+    if request.method == 'POST':
+        query = request.form.get('query')
+        
+        # Process the query here in your backend
+        print("User query:", query)
+        
+    else:
+        return render_template('index.html')
+
     return render_template('index.html')
 
 if __name__ == "__main__":
