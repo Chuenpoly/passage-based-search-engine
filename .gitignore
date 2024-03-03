@@ -3,3 +3,6 @@ collection/processing/indexes/*
 collection/processing/jsonl_file/*
 collection/processing/passage_results/*
 collection/processing/document_results/*
+
+# exception to the rule
+!somefolder/.gitkeep 
