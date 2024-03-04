@@ -13,6 +13,8 @@
 
     {% if results %}
     <h2>Search Results:</h2>
+    <p>Number of Documents Retrieved: {{ num_retrieved }}</p>
+    <p>Runtime: {{ runtime }} seconds</p>
     <table>
         <tr>
             <th>Ranking</th>
