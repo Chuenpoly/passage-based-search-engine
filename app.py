@@ -59,9 +59,10 @@ def index():
 
         # End of processing
         end = time.time()
-        print("Run time：%f s" % (end - start))
+        runtime = end - start
+        num_retrieved = len(results)
         
-        return render_template('index.html', query=query, results=results)
+        return render_template('index.html', query=query, results=results, num_retrieved=num_retrieved, runtime=runtime)
     else:
         return render_template('index.html')
 

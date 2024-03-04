@@ -5,7 +5,7 @@ import json
 def convert_to_jsonl(file_path):
     output_directory = 'collection/processing/jsonl_file'
     os.makedirs(output_directory, exist_ok=True)
-    output_file_path = os.path.join(output_directory, 'webap_docid_content.jsonl')
+    output_file_path = os.path.join(output_directory, 'webap_discourse_docid_content.jsonl')
 
     with open(file_path, 'r', encoding='utf-8') as file:
         content = file.read()
