@@ -1,38 +1,77 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <style>
+        /* Custom CSS for the delete button */
+        .delete-button {
+            cursor: pointer;
+        }
+    </style>
+    
+    <title>Chuen's search engine</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5 d-flex justify-content-center">Chuen's search engine</h1>
+        
+        
+        <div class="content mt-5 d-flex justify-content-center">
+            <form action="/" method="POST" class="search">
+                <div class="input-group mb-3 pe-1" style="width: 500px;">
+                    <input type="text" id="queryInput" name="query" class="form-control py-2 border-right-0 border" placeholder="Enter your search query">
+                    <button type="button" class="btn btn-outline-secondary border-left-0 border">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                    <button type="submit" class="btn btn-primary border-left-0 border">Search</button>
+                </div>
+            </form>
+        </div>
+    
 
-{% block head %} 
-<h1>Chuen's search engine</h1>
-{% endblock %}
-
-{% block body %} 
-<div class="content">
-    <form action="/" method="POST" class="search">
-        <input type="text" id="queryInput" name="query" placeholder="Enter your search query">
-        <input type="submit" value="Search">
-    </form>
-
-    {% if results %}
-    <h2>Search Results:</h2>
-    <p>Number of Documents Retrieved: {{ num_retrieved }}</p>
-    <p>Runtime: {{ runtime }} seconds</p>
-    <table>
-        <tr>
-            <th>Ranking</th>
-            <th>Document ID</th>
-            <th>Score</th>
-            <th>Relevant Passage ID</th>
-        </tr>
-        {% for result in results %}
-            <tr>
-                {% set columns = result.strip().split(' ') %}
-                {% for column in columns %}
-                <td>{{ column }}</td>
-                {% endfor %}
-            </tr>
-        {% endfor %}
-    </table>
-    {% endif %}
-
-</div>
-
-{% endblock %}
+        {% if results %}
+            <div class="content mt-5 text-center">
+                <h2 class="mt-5">Search Results:</h2>
+                <p>Number of Documents Retrieved: {{ num_retrieved }}</p>
+                <p>Runtime: {{ runtime }} seconds</p>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Ranking</th>
+                            <th class="text-center">Document ID</th>
+                            <th class="text-center">Score</th>
+                            <th class="text-center">Relevant Passage ID</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for result in results %}
+                            <tr>
+                                {% set columns = result.strip().split(' ') %}
+                                {% for column in columns %}
+                                <td class="text-center">{{ column }}</td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+    </div>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // JavaScript to handle the delete button click event
+        document.querySelector('.delete-button').addEventListener('click', function() {
+            document.getElementById('queryInput').value = '';
+        });
+    </script>
+</body>
+</html>
