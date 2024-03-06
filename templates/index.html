@@ -54,7 +54,9 @@
                             <tr class="resultRow">
                                 {% set columns = result.strip().split(' ') %}
                                 <td class="text-center">{{ columns[0] }}</td>
-                                <td class="text-center">{{ columns[1] }}</td>
+                                <td class="text-center">
+                                    <a href="/document/{{ columns[1] }}">{{ columns[1] }}</a>
+                                </td>
                                 <td class="text-center">{{ columns[2] }}</td>
                                 <td class="text-center">{{ columns[3] }}</td>
                             </tr>

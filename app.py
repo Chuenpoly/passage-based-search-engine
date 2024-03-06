@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 from pyserini.search.lucene import LuceneSearcher
 import time
+import jsonlines
 
 app = Flask(__name__)
 
@@ -67,6 +68,26 @@ def index():
         return render_template('index.html')
 
     return render_template('index.html')
+
+@app.route('/document/<document_id>')
+def document_page(document_id):
+    document_data = get_document(document_id)
+    if document_data is None:
+        return 'Document not found'
+
+    return render_template('document.html', document=document_data, document_id=document_id)
+
+def get_document(document_id):
+    passages = []
+    with jsonlines.open('collection/processing/jsonl_file/webap_docid_content.jsonl') as reader:
+        for document in reader:
+            if document['id'].startswith(document_id):
+                passage_id = document['id'].split('-')[-1]
+                passage_text = document['contents']
+                passages.append({'id': passage_id, 'text': passage_text})
+    if passages:
+        return passages
+    return None
 
 if __name__ == "__main__":
     app.run(debug=True)
