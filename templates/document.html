@@ -10,14 +10,59 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     
     <title>Passage-based Document Search Engine</title>
+    
+    <style>
+        .passage-id-button {
+            font-size: 24px;
+            padding: 6px 15px;
+            border-radius: 8px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .passage-id-button:hover {
+            background-color: #0056b3;
+        }
+
+        .scroll-to-top-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            display: none;
+        }
+
+        .scroll-to-top-button i {
+            font-size: 24px;
+            margin-top: 8px;
+        }
+
+        .scroll-to-top-button.active {
+            display: block;
+        }
+    </style>
 </head>
 
 <body>
     <div class="container">
         <h1 class="mt-5 d-flex justify-content-center">{{ document_id }}</h1>
-        <h4 class="text-muted text-center">Relevant Passage ID: {{ passage_id }}</h4>
+        <h4 class="text-muted text-center">Relevant Passage ID: 
+            <button class="passage-id-button" onclick="scrollToRelevantPassage('{{ passage_id }}')">
+                {{ passage_id }}
+            </button>
+        </h4>
+        
+        <a class="btn btn-primary mt-3" href="javascript:history.back()">Previous</a>
 
-        <table class="table table-striped mt-5">
+        <table class="table table-striped mt-3">
             <thead>
                 <tr>
                     <th>Passage ID</th>
@@ -26,17 +71,43 @@
             </thead>
             <tbody>
                 {% for passage in document %}
-                <tr {% if passage.id == passage_id %}class="table-primary"{% endif %}>
+                <tr id="{{ passage.id }}" {% if passage.id == passage_id %}class="table-primary"{% endif %}>
                     <td>{{ passage.id }}</td>
                     <td>{{ passage.text }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
+
+        <button class="scroll-to-top-button" onclick="scrollToTop()">
+            <i class="bi bi-arrow-up-circle-fill"></i>
+        </button>
     </div>
     
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        function scrollToRelevantPassage(passageId) {
+            const element = document.getElementById(passageId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('scroll', function() {
+            const scrollButton = document.querySelector('.scroll-to-top-button');
+            if (window.scrollY > 200) {
+                scrollButton.classList.add('active');
+            } else {
+                scrollButton.classList.remove('active');
+            }
+        });
+    </script>
 
 </body>
 </html>
