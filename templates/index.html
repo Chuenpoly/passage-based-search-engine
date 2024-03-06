@@ -15,7 +15,7 @@
             cursor: pointer;
         }
     </style>
-    
+
     <title>Chuen's search engine</title>
 </head>
 <body>
@@ -27,7 +27,7 @@
             <form action="/" method="POST" class="search">
                 <div class="input-group mb-3 pe-1" style="width: 500px;">
                     <input type="text" id="queryInput" name="query" class="form-control py-2 border-right-0 border" placeholder="Enter your search query">
-                    <button type="button" class="btn btn-outline-secondary border-left-0 border">
+                    <button type="button" id="deleteButton" class="btn btn-outline-secondary border-left-0 border">
                         <i class="bi bi-x-lg"></i>
                     </button>
                     <button type="submit" class="btn btn-primary border-left-0 border">Search</button>
@@ -69,7 +69,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // JavaScript to handle the delete button click event
-        document.querySelector('.delete-button').addEventListener('click', function() {
+        document.getElementById('deleteButton').addEventListener('click', function() {
             document.getElementById('queryInput').value = '';
         });
     </script>
