@@ -15,6 +15,7 @@
 <body>
     <div class="container">
         <h1 class="mt-5 d-flex justify-content-center">{{ document_id }}</h1>
+        <h4 class="text-muted text-center">Relevant Passage ID: {{ passage_id }}</h4>
 
         <table class="table table-striped mt-5">
             <thead>
@@ -25,7 +26,7 @@
             </thead>
             <tbody>
                 {% for passage in document %}
-                <tr>
+                <tr {% if passage.id == passage_id %}class="table-primary"{% endif %}>
                     <td>{{ passage.id }}</td>
                     <td>{{ passage.text }}</td>
                 </tr>

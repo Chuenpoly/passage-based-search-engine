@@ -69,14 +69,16 @@ def index():
 
     return render_template('index.html')
 
-@app.route('/document/<document_id>')
-def document_page(document_id):
+# when the user clicks on a document, the following route is called
+@app.route('/document/<document_id>/<passage_id>')
+def document_page(document_id, passage_id):
     document_data = get_document(document_id)
     if document_data is None:
         return 'Document not found'
 
-    return render_template('document.html', document=document_data, document_id=document_id)
+    return render_template('document.html', document=document_data, document_id=document_id, passage_id=passage_id)
 
+# function to retrieve the document from the jsonl file
 def get_document(document_id):
     passages = []
     with jsonlines.open('collection/processing/jsonl_file/webap_docid_content.jsonl') as reader:
