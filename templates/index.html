@@ -15,7 +15,7 @@
             cursor: pointer;
         }
     </style>
-
+    
     <title>Chuen's search engine</title>
 </head>
 <body>
@@ -26,7 +26,7 @@
         <div class="content mt-5 d-flex justify-content-center">
             <form action="/" method="POST" class="search">
                 <div class="input-group mb-3 pe-1" style="width: 500px;">
-                    <input type="text" id="queryInput" name="query" class="form-control py-2 border-right-0 border" placeholder="Enter your search query">
+                    <input type="text" id="queryInput" name="query" class="form-control py-2 border-right-0 border" placeholder="Enter your search query" value="{{ query }}">
                     <button type="button" id="deleteButton" class="btn btn-outline-secondary border-left-0 border">
                         <i class="bi bi-x-lg"></i>
                     </button>
@@ -34,7 +34,6 @@
                 </div>
             </form>
         </div>
-    
 
         {% if results %}
             <div class="content mt-5 text-center">
@@ -72,6 +71,7 @@
         document.getElementById('deleteButton').addEventListener('click', function() {
             document.getElementById('queryInput').value = '';
         });
+
     </script>
 </body>
 </html>
