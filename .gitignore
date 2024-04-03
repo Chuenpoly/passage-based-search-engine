@@ -3,9 +3,11 @@ collection/processing/indexes/*
 collection/processing/jsonl_file/*
 collection/processing/passage_results/*
 collection/processing/document_results/*
+collection/processing/queries/*
 
 # exception to the rule
 !collection/processing/indexes/.gitkeep
 !collection/processing/jsonl_file/.gitkeep
 !collection/processing/passage_results/.gitkeep
 !collection/processing/document_results/.gitkeep
+!collection/processing/queries/.gitkeep

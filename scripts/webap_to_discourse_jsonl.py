@@ -1,13 +1,16 @@
+""" This script helps to transform the webap documents into discourse passages 
+jsonl format that can be load and indexed by pyserini """
+
 import os
 import re
 import json
 
-def convert_to_jsonl(file_path):
-    output_directory = 'collection/processing/jsonl_file'
-    os.makedirs(output_directory, exist_ok=True)
-    output_file_path = os.path.join(output_directory, 'webap_discourse_docid_content.jsonl')
+def convert_to_jsonl(filepath):
+    output_dir = 'collection\processing\jsonl_file'
+    os.makedirs(output_dir, exist_ok=True)
+    output_filepath = os.path.join(output_dir, 'webap_discourse_docid_content.jsonl')
 
-    with open(file_path, 'r', encoding='utf-8') as file:
+    with open(filepath, 'r', encoding='utf-8') as file:
         content = file.read()
 
     doc_blocks = re.findall(r'<DOC>(.*?)</DOC>', content, re.DOTALL)
@@ -25,8 +28,8 @@ def convert_to_jsonl(file_path):
             }
             jsonl_data.append(json.dumps(json_data))
 
-    with open(output_file_path, 'w', encoding='utf-8') as output_file:
+    with open(output_filepath, 'w', encoding='utf-8') as output_file:
         output_file.write('\n'.join(jsonl_data))
 
-file_path = 'collection/WebAP/gradedText/grade.trectext_patched'
-convert_to_jsonl(file_path)
+filepath = 'collection\WebAP\gradedText\grade.trectext_patched'
+convert_to_jsonl(filepath)
