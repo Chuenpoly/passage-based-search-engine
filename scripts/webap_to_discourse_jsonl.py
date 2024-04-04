@@ -6,7 +6,7 @@ import re
 import json
 
 def convert_to_jsonl(filepath):
-    output_dir = 'collection\processing\jsonl_file'
+    output_dir = 'collection/processing/jsonl_file'
     os.makedirs(output_dir, exist_ok=True)
     output_filepath = os.path.join(output_dir, 'webap_discourse_docid_content.jsonl')
 
@@ -31,5 +31,5 @@ def convert_to_jsonl(filepath):
     with open(output_filepath, 'w', encoding='utf-8') as output_file:
         output_file.write('\n'.join(jsonl_data))
 
-filepath = 'collection\WebAP\gradedText\grade.trectext_patched'
+filepath = 'collection/WebAP/gradedText/grade.trectext_patched'
 convert_to_jsonl(filepath)
