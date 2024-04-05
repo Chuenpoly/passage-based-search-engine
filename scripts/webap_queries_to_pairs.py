@@ -4,7 +4,7 @@ can be load and iterated by pyserini """
 import json
 
 input_file = 'collection/WebAP/gradedText/gov2.query.json'
-output_file = 'collection/processing/queries/queries.txt'
+output_file = 'collection/processing/queries/topics.queries.tsv'
 
 with open(input_file, 'r', encoding='utf-8') as inputFile:
     content = json.load(inputFile)

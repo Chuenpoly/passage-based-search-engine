@@ -14,7 +14,7 @@ def index():
 
         # Process the query here in backend
         # use the inverted index and user query to retrieve the documents
-        searcher = LuceneSearcher('collection/processing/indexes')
+        searcher = LuceneSearcher('collection/processing/indexes/lucene_index_webap')
         hits = searcher.search(query, k=searcher.num_docs)
 
         # Save the passage search results to a file
