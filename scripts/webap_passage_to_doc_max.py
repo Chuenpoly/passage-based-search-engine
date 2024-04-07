@@ -3,7 +3,7 @@
 from collections import defaultdict
 
 input_file = 'collection/processing/batch_retrieval_results/run.webap.bm25tuned.trec'
-output_file = 'collection/processing/document_results/eval_doc_score_max.trec'
+output_file = 'collection/processing/document_results/run.webap.bm25tuned.max.trec'
 
 document_scores = defaultdict(dict)
 
