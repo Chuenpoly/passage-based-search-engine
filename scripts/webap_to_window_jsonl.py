@@ -8,7 +8,7 @@ import json
 def convert_to_jsonl(file_path, window_size):
     output_dir = 'collection/processing/jsonl_file'
     os.makedirs(output_dir, exist_ok=True)
-    output_filepath = os.path.join(output_dir, 'webap_window_docid_content.jsonl')
+    output_filepath = os.path.join(output_dir, 'webap_docid_content.jsonl')
 
     with open(file_path, 'r', encoding='utf-8') as file:
         content = file.read()
@@ -43,5 +43,5 @@ def convert_to_jsonl(file_path, window_size):
         output_file.write('\n'.join(jsonl_data))
 
 file_path = 'collection/WebAP/gradedText/grade.trectext_patched'
-window_size = 10  # Specify the desired window size here
+window_size = 40  # Specify the desired window size here
 convert_to_jsonl(file_path, window_size)
