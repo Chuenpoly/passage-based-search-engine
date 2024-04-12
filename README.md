@@ -1,3 +1,5 @@
+Put the WebAP folder into the collection folder
+
 #activate the venv
 source env/bin/activate
 
